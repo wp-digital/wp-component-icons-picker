@@ -1,0 +1,24 @@
+{
+	"name": "wp-component-icons-picker",
+	"version": "1.0.0",
+	"description": "Component to render an UI that allows users to pick an icon from predefined list.",
+	"author": "Innocode",
+	"license": "MIT",
+	"main": "src/index.js",
+	"scripts": {
+		"format": "wp-scripts format",
+		"lint:js": "wp-scripts lint-js",
+		"lint:js:fix": "wp-scripts lint-js --fix",
+		"packages-update": "wp-scripts packages-update"
+	},
+	"dependencies": {
+		"@wordpress/components": "^19.1.5",
+		"@wordpress/element": "^4.0.4",
+		"@wordpress/i18n": "^4.2.4",
+		"lodash": "^4.17.21"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^19.2.2",
+		"prettier": "^2.5.1"
+	}
+}
