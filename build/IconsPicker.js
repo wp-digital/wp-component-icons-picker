@@ -17,14 +17,20 @@ export default function IconsPicker(props) {
     return null;
   }
 
-  return createElement(BaseControl, null, createElement(BaseControl.VisualLabel, null, label), createElement(Button, {
+  return createElement(BaseControl, null, createElement("legend", null, createElement(BaseControl.VisualLabel, null, label)), createElement(Flex, {
+    justify: "flex-start"
+  }, createElement(FlexItem, null, createElement(Button, {
     isTertiary: true,
-    variant: "tertiary",
     isPressed: isOpened,
     onClick: () => {
       setIsOpened(!isOpened);
     }
-  }, !value ? __('Add Icon', 'innocode-component-icons-picker') : __('Update Icon', 'innocode-component-icons-picker')), isOpened && createElement(Modal, {
+  }, !value ? __('Add', 'innocode-components') : __('Update', 'innocode-components'))), !!value && createElement(FlexItem, null, createElement(Button, {
+    isDestructive: true,
+    onClick: () => {
+      onChange();
+    }
+  }, __('Remove', 'innocode-components')))), isOpened && createElement(Modal, {
     title: label,
     onRequestClose: () => {
       setIsOpened(false);
@@ -38,9 +44,9 @@ export default function IconsPicker(props) {
       marginBottom: 8
     }
   }, createElement(Button, {
-    isPressed: icon.value === value,
+    isPressed: icon.value === selected,
     onClick: () => {
-      setSelected(icon.value);
+      setSelected(icon.value !== selected ? icon.value : undefined);
     }
   }, createElement(Icon, {
     icon: has(icon, 'icon') ? icon.icon : icon.value

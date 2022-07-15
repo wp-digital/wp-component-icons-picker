@@ -22,19 +22,36 @@ export default function IconsPicker(props) {
 
 	return (
 		<BaseControl>
-			<BaseControl.VisualLabel>{label}</BaseControl.VisualLabel>
-			<Button
-				isTertiary
-				variant="tertiary"
-				isPressed={isOpened}
-				onClick={() => {
-					setIsOpened(!isOpened);
-				}}
-			>
-				{!value
-					? __('Add Icon', 'innocode-component-icons-picker')
-					: __('Update Icon', 'innocode-component-icons-picker')}
-			</Button>
+			<legend>
+				<BaseControl.VisualLabel>{label}</BaseControl.VisualLabel>
+			</legend>
+			<Flex justify="flex-start">
+				<FlexItem>
+					<Button
+						isTertiary
+						isPressed={isOpened}
+						onClick={() => {
+							setIsOpened(!isOpened);
+						}}
+					>
+						{!value
+							? __('Add', 'innocode-components')
+							: __('Update', 'innocode-components')}
+					</Button>
+				</FlexItem>
+				{!!value && (
+					<FlexItem>
+						<Button
+							isDestructive
+							onClick={() => {
+								onChange();
+							}}
+						>
+							{__('Remove', 'innocode-components')}
+						</Button>
+					</FlexItem>
+				)}
+			</Flex>
 			{isOpened && (
 				<Modal
 					title={label}
@@ -55,9 +72,13 @@ export default function IconsPicker(props) {
 									}}
 								>
 									<Button
-										isPressed={icon.value === value}
+										isPressed={icon.value === selected}
 										onClick={() => {
-											setSelected(icon.value);
+											setSelected(
+												icon.value !== selected
+													? icon.value
+													: undefined
+											);
 										}}
 									>
 										<Icon
